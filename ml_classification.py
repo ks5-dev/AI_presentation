@@ -5,6 +5,8 @@ from sklearn.datasets import load_iris
 from sklearn.neighbors import KNeighborsClassifier
 import numpy as np
 
+#Load dataset và khảo sát data
+
 iris_dataset = load_iris()
 
 print("Keys of iris_dataset: \n{}".format(iris_dataset.keys()))
@@ -17,14 +19,13 @@ from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(
 iris_dataset['data'], iris_dataset['target'], random_state=0)
 
-# create dataframe from data in X_train
-# label the columns using the strings in iris_dataset.feature_names
+# Minh họa data
 iris_dataframe = pd.DataFrame(X_train, columns=iris_dataset.feature_names)
-# create a scatter matrix from the dataframe, color by y_train
 grr = pd.plotting.scatter_matrix(iris_dataframe, c=y_train, figsize=(15, 15), marker='o',
 hist_kwds={'bins': 20}, s=60, alpha=.8, cmap=mglearn.cm3)
 plt.show()
 
+#Quá trình learning
 knn = KNeighborsClassifier(n_neighbors=1)
 knn.fit(X_train, y_train)
 '''
